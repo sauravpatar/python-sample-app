@@ -1,14 +1,13 @@
-from flask import Flask, request
-from flask_restful import Resource, Api
+from flask import Flask, jsonify
 
 app = Flask(__name__)
-api = Api(app)
 
-class Movies(Resource):
-    def get(self):
-        return {'movies': [{'id':1, 'name':'Transformer'},{'id':2, 'name':'Avengers'}]} 
+@app.route("/")
+def dummy_api():
+    return jsonify({'Movie':'Avengers',
+                    'ID':'1'},{'id':2, 'name':'Transformer'})
 
-api.add_resource(Movies, '/movies') # Route_1
 
-if __name__ == '__main__':
-     app.run(port=8000)
+if __name__ =="__main__":
+    app.run()
+
